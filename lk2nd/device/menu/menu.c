@@ -23,7 +23,8 @@ extern void cmd_continue(const char *arg, void *data, unsigned sz);
 
 #define FONT_WIDTH	(5+1)
 #define FONT_HEIGHT	12
-#define MIN_LINE	40
+/* 40 chars = scale 1, 25 chars = scale 2 (better for 400x400 watches) */
+#define MIN_LINE	25
 
 enum fbcon_colors {
 	WHITE = FBCON_TITLE_MSG,
@@ -89,15 +90,20 @@ static uint16_t lk2nd_boot_pressed_key(void)
 }
 
 #define LONG_PRESS_DURATION 1000
+#define MENU_TIMEOUT_MS 4000
 
-static uint16_t wait_key(void)
+static uint16_t wait_key_timeout(uint32_t timeout_ms)
 {
+	uint64_t deadline = (timeout_ms > 0) ? (current_time() + timeout_ms) : 0;
 	uint16_t keycode = 0;
 	int press_start = 0;
 	int press_duration;
 
-	while (!(keycode = lk2nd_boot_pressed_key()))
+	while (!(keycode = lk2nd_boot_pressed_key())) {
 		thread_sleep(1);
+		if (deadline && current_time() > deadline)
+			return 0;
+	}
 
 	press_start = current_time();
 
@@ -116,6 +122,11 @@ static uint16_t wait_key(void)
 	thread_sleep(5);
 
 	return keycode;
+}
+
+static uint16_t wait_key(void)
+{
+	return wait_key_timeout(0);
 }
 
 #define xstr(s) str(s)
@@ -158,6 +169,8 @@ static struct {
 		fbcon_puts(str, color, y, center); \
 		y += incr; \
 	} while(0)
+
+void display_default_image_on_screen(void);
 
 void display_fastboot_menu(void)
 {
@@ -244,7 +257,10 @@ void display_fastboot_menu(void)
 
 	scale_factor = old_scale;
 	incr = FONT_HEIGHT * scale_factor;
-	while (true) {
+	{
+		static bool first_key = true;
+
+		while (true) {
 		y = y_menu;
 		fbcon_clear_msg(y / FONT_HEIGHT, (y / FONT_HEIGHT + ARRAY_SIZE(menu_options) * scale_factor));
 		for (i = 0; i < ARRAY_SIZE(menu_options); ++i) {
@@ -259,7 +275,33 @@ void display_fastboot_menu(void)
 
 		fbcon_flush();
 
-		switch (wait_key()) {
+		{
+			uint16_t keycode;
+			if (first_key) {
+				/*
+				 * Show a static auto-boot message and wait.  MDP3
+				 * cont-splash cannot do repeated fbcon updates
+				 * (display glitches, no image change), so we draw
+				 * the message once and do the wait silently.
+				 */
+				int cd_y = fb->height - incr;
+				fbcon_printf_ln(SILVER, cd_y,
+					incr, true, "Auto-boot in %u s",
+					MENU_TIMEOUT_MS / 1000);
+				fbcon_flush();
+
+				keycode = wait_key_timeout(MENU_TIMEOUT_MS);
+				if (!keycode) {
+					dprintf(INFO, "menu: timeout, auto-continue\n");
+					opt_continue();
+					return;
+				}
+				first_key = false;
+			} else {
+				keycode = wait_key();
+			}
+
+			switch (keycode) {
 		case KEY_POWER:
 			y = y_menu + incr * sel;
 			fbcon_printf_ln(
@@ -267,6 +309,16 @@ void display_fastboot_menu(void)
 				y, incr, true, ">> %s <<",
 				menu_options[sel].name
 			);
+			fbcon_clear();
+			{
+				int sy = (fb->height - 4 * incr) / 2;
+				fbcon_puts_ln(WHITE, sy, incr, true,
+					xstr(BOARD));
+				sy += incr;
+				fbcon_puts_ln(SILVER, sy, incr, true,
+					menu_options[sel].name);
+				fbcon_flush();
+			}
 			menu_options[sel].action();
 			break;
 		case KEY_VOLUMEUP:
@@ -281,6 +333,8 @@ void display_fastboot_menu(void)
 				sel = 0;
 			break;
 		}
+	}
+	}
 	}
 }
 

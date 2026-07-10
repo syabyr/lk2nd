@@ -1,0 +1,57 @@
+// SPDX-License-Identifier: BSD-3-Clause
+
+#include <skeleton32.dtsi>
+#include <lk2nd.dtsi>
+
+/ {
+	model = "Qualcomm MSM8909W"; /* Required by the oem bootloader. */
+	qcom,msm-id = <QCOM_ID_MSM8909 0 QCOM_ID_MSM8909W 0>;
+	qcom,board-id = <QCOM_BOARD_ID_MTP 0x105>;
+};
+
+&lk2nd {
+	cmcc-w1a {
+		model = "CMCC W1A";
+		compatible = "cmcc,w1a";
+
+		// FIXME: lk2nd,dtb-files = "msm8909-cmcc-w1a";
+
+		lk2nd,match-panel;
+
+		panel {
+			compatible = "cmcc,w1a-panel";
+
+			qcom,mdss_dsi_rm67162_wqvga_cmd {
+				compatible = "cmcc,rm67162";
+			};
+		};
+
+		gpio-keys {
+			compatible = "gpio-keys";
+
+			power {
+				lk2nd,code = <KEY_POWER>;
+				gpios = <&pmic_pon GPIO_PMIC_PWRKEY 0>;
+			};
+
+			/*
+			 * W1A has only Power + Volume-Up buttons (no Volume-Down).
+			 * Map the physical Volume-Up button to KEY_VOLUMEDOWN so that
+			 * holding it at boot enters the lk2nd fastboot menu (lk2nd
+			 * triggers fastboot on KEY_VOLUMEDOWN). In the menu, Volume-Up
+			 * navigates (down, wraps) and Power selects. Entering the menu
+			 * is also possible via "adb reboot bootloader" from Android.
+			 */
+			volume-up {
+				lk2nd,code = <KEY_VOLUMEDOWN>;
+				gpios = <&tlmm 90 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			};
+
+			/* RESIN has no physical button on W1A; declared for completeness */
+			volume-down {
+				lk2nd,code = <KEY_VOLUMEDOWN>;
+				gpios = <&pmic_pon GPIO_PMIC_RESIN 0>;
+			};
+		};
+	};
+};

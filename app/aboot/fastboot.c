@@ -668,6 +668,14 @@ int fastboot_init(void *base, unsigned size)
 	extern char sn_buf[MAX_RSP_SIZE];
 	char serialno[MAX_RSP_SIZE] = "";
 	thread_t *thr;
+	static int initialized;
+
+	/* Idempotent: lk2nd may call this early (before display init, for
+	 * debugging) and again later in the normal fastboot path. */
+	if (initialized)
+		return 0;
+	initialized = 1;
+
 	dprintf(INFO, "fastboot_init()\n");
 
 	download_base = base;

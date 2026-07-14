@@ -69,8 +69,8 @@ void arm_mmu_map_section(addr_t paddr, addr_t vaddr, uint flags)
 }
 
 /* TTBR cacheability attributes */
-#define TTBR_RGN_IRGN_WB_WA		((0b01 << 3) | (0 << 6) | (1 << 0))
-#define TTBR_RGN_IRGN_WT		((0b10 << 3) | (1 << 6) | (0 << 0))
+#define TTBR_RGN_IRGN_WB_WA		((0b01 << 3) | (1 << 6) | (0 << 0))
+#define TTBR_RGN_IRGN_WT		((0b10 << 3) | (0 << 6) | (1 << 0))
 #define TTBR_RGN_IRGN_WB_NWA		((0b11 << 3) | (1 << 6) | (1 << 0))
 
 #define MMU_SECTION_TEX_CB_MASK		((0b111 << 12) | (0b11 << 2))

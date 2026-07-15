@@ -1,0 +1,382 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1783487361896,
+  "projectRoot": "/Users/mybays/develop/cmcc-w1a/lk2nd",
+  "techStack": {
+    "languages": [
+      {
+        "name": "C/C++",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "Makefile"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "make build",
+    "testCommand": "make test",
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "lib",
+      "scripts"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "Documentation": {
+      "path": "Documentation",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1783487361881,
+      "keyFiles": [
+        "boot.md",
+        "building.md",
+        "devices.md",
+        "dt-bindings.md",
+        "fastboot.md"
+      ]
+    },
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 2,
+      "lastAccessed": 1783487361881,
+      "keyFiles": [
+        "app.c",
+        "rules.mk"
+      ]
+    },
+    "arch": {
+      "path": "arch",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783487361881,
+      "keyFiles": []
+    },
+    "build-lk2nd-msm8909": {
+      "path": "build-lk2nd-msm8909",
+      "purpose": null,
+      "fileCount": 16,
+      "lastAccessed": 1783487361881,
+      "keyFiles": [
+        "config.h",
+        "emmc_appsboot.mbn",
+        "lk",
+        "lk.bin",
+        "lk.bin-dtb"
+      ]
+    },
+    "build-lk2nd-msm8909-w1a": {
+      "path": "build-lk2nd-msm8909-w1a",
+      "purpose": null,
+      "fileCount": 14,
+      "lastAccessed": 1783487361882,
+      "keyFiles": [
+        "config.h",
+        "emmc_appsboot.mbn",
+        "lk",
+        "lk.bin",
+        "lk.bin-dtb"
+      ]
+    },
+    "build-lk2nd-msm8916": {
+      "path": "build-lk2nd-msm8916",
+      "purpose": null,
+      "fileCount": 15,
+      "lastAccessed": 1783487361882,
+      "keyFiles": [
+        "config.h",
+        "emmc_appsboot.mbn",
+        "lk",
+        "lk.bin",
+        "lk.bin-dtb"
+      ]
+    },
+    "dev": {
+      "path": "dev",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1783487361882,
+      "keyFiles": [
+        "dev.c",
+        "rules.mk"
+      ]
+    },
+    "include": {
+      "path": "include",
+      "purpose": null,
+      "fileCount": 29,
+      "lastAccessed": 1783487361882,
+      "keyFiles": [
+        "alloca.h",
+        "app.h",
+        "arch.h",
+        "asm.h",
+        "assert.h"
+      ]
+    },
+    "kernel": {
+      "path": "kernel",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1783487361883,
+      "keyFiles": [
+        "debug.c",
+        "dpc.c",
+        "event.c",
+        "main.c",
+        "mutex.c"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1783487361883,
+      "keyFiles": []
+    },
+    "lk2nd": {
+      "path": "lk2nd",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1783487361883,
+      "keyFiles": [
+        "COPYING-GPL",
+        "LICENSE",
+        "init.c",
+        "rules.mk"
+      ]
+    },
+    "make": {
+      "path": "make",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1783487361883,
+      "keyFiles": [
+        "build.mk",
+        "macros.mk",
+        "module.mk"
+      ]
+    },
+    "platform": {
+      "path": "platform",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1783487361883,
+      "keyFiles": [
+        "debug.c",
+        "init.c",
+        "rules.mk"
+      ]
+    },
+    "project": {
+      "path": "project",
+      "purpose": null,
+      "fileCount": 76,
+      "lastAccessed": 1783487361883,
+      "keyFiles": [
+        "aboot-surf7k.mk",
+        "aboot-surf8k.mk",
+        "apq8064.mk",
+        "apq8084.mk",
+        "armemu-test.mk"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 11,
+      "lastAccessed": 1783487361884,
+      "keyFiles": [
+        "aboot_test.py",
+        "attach.cmm",
+        "buildall",
+        "config_a11.cmm",
+        "config_scorpion.cmm"
+      ]
+    },
+    "target": {
+      "path": "target",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1783487361884,
+      "keyFiles": [
+        "init.c",
+        "rules.mk",
+        "target_display.c"
+      ]
+    },
+    "build-lk2nd-msm8909/app": {
+      "path": "build-lk2nd-msm8909/app",
+      "purpose": "Application code",
+      "fileCount": 2,
+      "lastAccessed": 1783487361884,
+      "keyFiles": [
+        "app.d",
+        "app.o"
+      ]
+    },
+    "build-lk2nd-msm8909/lib": {
+      "path": "build-lk2nd-msm8909/lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1783487361885,
+      "keyFiles": []
+    },
+    "build-lk2nd-msm8909-w1a/app": {
+      "path": "build-lk2nd-msm8909-w1a/app",
+      "purpose": "Application code",
+      "fileCount": 2,
+      "lastAccessed": 1783487361885,
+      "keyFiles": [
+        "app.d",
+        "app.o"
+      ]
+    },
+    "build-lk2nd-msm8909-w1a/lib": {
+      "path": "build-lk2nd-msm8909-w1a/lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1783487361885,
+      "keyFiles": []
+    },
+    "build-lk2nd-msm8916/app": {
+      "path": "build-lk2nd-msm8916/app",
+      "purpose": "Application code",
+      "fileCount": 2,
+      "lastAccessed": 1783487361885,
+      "keyFiles": [
+        "app.d",
+        "app.o"
+      ]
+    },
+    "build-lk2nd-msm8916/lib": {
+      "path": "build-lk2nd-msm8916/lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1783487361886,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "lk2nd/device/menu/menu.c",
+      "accessCount": 19,
+      "lastAccessed": 1783532690278,
+      "type": "file"
+    },
+    {
+      "path": "app/aboot/aboot.c",
+      "accessCount": 6,
+      "lastAccessed": 1783585429918,
+      "type": "file"
+    },
+    {
+      "path": "project/lk2nd-msm8909-w1a.mk",
+      "accessCount": 4,
+      "lastAccessed": 1783529693577,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/device/dts/msm8909/msm8909-cmcc-w1a.dts",
+      "accessCount": 3,
+      "lastAccessed": 1783497591323,
+      "type": "file"
+    },
+    {
+      "path": "app/aboot/fastboot.c",
+      "accessCount": 2,
+      "lastAccessed": 1783491207212,
+      "type": "file"
+    },
+    {
+      "path": "platform/msm_shared/dev_tree.c",
+      "accessCount": 2,
+      "lastAccessed": 1783586491743,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/display/cont-splash/refresh.c",
+      "accessCount": 2,
+      "lastAccessed": 1783677267516,
+      "type": "file"
+    },
+    {
+      "path": "include/debug.h",
+      "accessCount": 1,
+      "lastAccessed": 1783491279162,
+      "type": "file"
+    },
+    {
+      "path": "platform/msm_shared/mdp3.c",
+      "accessCount": 1,
+      "lastAccessed": 1783494876372,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/display/cont-splash/pipe.c",
+      "accessCount": 1,
+      "lastAccessed": 1783494930727,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/display/cont-splash/mdp.h",
+      "accessCount": 1,
+      "lastAccessed": 1783494930878,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/display/cont-splash/dma.c",
+      "accessCount": 1,
+      "lastAccessed": 1783494930916,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/display/cont-splash/target_display.c",
+      "accessCount": 1,
+      "lastAccessed": 1783494930936,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/device/keys.c",
+      "accessCount": 1,
+      "lastAccessed": 1783496972219,
+      "type": "file"
+    },
+    {
+      "path": "platform/msm_shared/wdog.c",
+      "accessCount": 1,
+      "lastAccessed": 1783591155245,
+      "type": "file"
+    },
+    {
+      "path": "lk2nd/fastboot/dtb.c",
+      "accessCount": 1,
+      "lastAccessed": 1783660473932,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
